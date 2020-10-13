@@ -112,7 +112,14 @@ int main()
   for_each(vector_test.begin(), vector_test.end(), plus2<int>());
   for_each(vector_test.begin(), vector_test.end(), [](int& x, int v = 2 ){ x += v;});
   for_each(vector_test.begin(), vector_test.end(), [](int& x){ std::cout<<x; });
+  std::reverse(vector_test.begin(), vector_test.end());
+  std::cout<<"Max element : "<< *std::max_element(vector_test.begin(), vector_test.end())<<std::endl;
+  std::unique(vector_test.begin(), vector_test.end());
 
+  std::transform(vector_test.begin(), vector_test.end(), vector_test.begin(), [](int& x){ return x *= x;});
+  std::remove_if(vector_test.begin(), vector_test.end(), [](int& x){ return x == 81; });
+  int sum_res  = std::accumulate(vector_test.begin(), vector_test.end(), 0);
+  int sum_res2 = std::accumulate(vector_test.begin(), vector_test.end(), 1, std::multiplies<int>());
   // Numeric
   int sum = std::accumulate(vector_test.begin(), vector_test.end(), 0);
   int inner_product = std::inner_product(vector_test.begin(), vector_test.end(), 
